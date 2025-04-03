@@ -1,0 +1,15 @@
+.overlay {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 40px;
+    border-radius: 15px;
+    width: 80%;
+    max-width: 700px;
+    animation: fadeIn 1.5s ease-in-out;
+    margin-top: 50px;
+    position: relative;
+    background-image: url('watermark.png'); /* Replace with actual image */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    opacity: 0.9;
+}

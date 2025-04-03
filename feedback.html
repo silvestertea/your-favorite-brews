@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Silvester's Tea Services</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+        (function(){
+            emailjs.init("p9BmUatJO9Nn3Dmaw");
+        })();
+
+        function sendFeedback(event) {
+            event.preventDefault();
+            const name = document.getElementById("name").value;
+            const feedback = document.getElementById("feedback").value;
+            const rating = document.getElementById("rating").value;
+            
+            const templateParams = {
+                name: name,
+                feedback: feedback,
+                rating: rating
+            };
+
+            emailjs.send("service_akudvx8", "template_t2m4sdm", templateParams)
+                .then(response => {
+                    alert("Thank you for your feedback!");
+                    document.getElementById("feedback-form").reset();
+                }, error => {
+                    alert("Failed to send feedback. Please try again later.");
+                });
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            margin: 0;
+            padding: 0;
+            background-color: #faf3e0;
+            text-align: center;
+        }
+
+        .feedback form {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 500px;
+            margin: auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .feedback textarea, .feedback input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .star-rating {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .star {
+            font-size: 30px;
+            cursor: pointer;
+            color: #ccc;
+            transition: color 0.3s, transform 0.2s;
+        }
+
+        .star:hover,
+        .star.active {
+            color: #007bff;
+            transform: scale(1.2);
+        }
+
+        .feedback button {
+            background: #3A5F0B;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .feedback button:hover {
+            background: #FFD700;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <section class="feedback">
+        <h2>Customer Feedback</h2>
+        <form id="feedback-form" onsubmit="sendFeedback(event)">
+            <label for="name">Your Name:</label><br>
+            <input type="text" id="name" name="name" required><br>
+            
+            <label for="feedback">Your Feedback:</label><br>
+            <textarea id="feedback" name="feedback" required></textarea><br>
+            
+            <div class="star-rating">
+                <span class="star" data-value="1">★</span>
+                <span class="star" data-value="2">★</span>
+                <span class="star" data-value="3">★</span>
+                <span class="star" data-value="4">★</span>
+                <span class="star" data-value="5">★</span>
+            </div>
+            <input type="hidden" id="rating" name="rating" value="0">
+            <button type="submit">Submit Feedback</button>
+        </form>
+    </section>
+
+    <script>
+        document.querySelectorAll('.star').forEach(star => {
+            star.addEventListener('click', function() {
+                let value = this.getAttribute('data-value');
+                document.getElementById('rating').value = value;
+                document.querySelectorAll('.star').forEach((s, index) => {
+                    s.classList.remove('active');
+                    if (index < value) {
+                        s.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

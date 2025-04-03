@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Silvester's Tea Services</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            color: black;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: #4CAF50;
+            padding: 15px 0;
+            text-align: center;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background 0.3s ease, transform 0.2s;
+        }
+
+        nav ul li a:hover {
+            background: #3e8e41;
+            transform: scale(1.1);
+        }
+
+        /* Layout */
+        .content {
+            display: flex;
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        /* Blog Section */
+        #blog {
+            flex: 3;
+            padding-right: 20px;
+        }
+
+        article {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+
+        article h3 {
+            color: #ff9800;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            transition: background 0.3s ease, transform 0.2s;
+        }
+
+        .button:hover {
+            background-color: #ff9800;
+            transform: scale(1.1);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            flex: 1;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .sidebar h3 {
+            color: #4CAF50;
+        }
+
+        /* Comment Section */
+        .comment-section {
+            margin-top: 30px;
+        }
+
+        .comment-section textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .comment-section button {
+            background: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .social-share {
+            margin-top: 10px;
+        }
+
+        .social-share a {
+            margin-right: 10px;
+            text-decoration: none;
+            color: #4CAF50;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="main.html">Main</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="service.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="read-more.html" class="active">Read More</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div class="content">
+        <!-- Blog Section -->
+        <section id="blog">
+            <h2>Latest Blog Posts</h2>
+            <article>
+                <h3>Health Benefits of Drinking Tea</h3>
+                <p>Discover why tea is more than just a drink...</p>
+                <a href="read-more.html" class="button">Read More</a>
+                <div class="social-share">
+                    <ahref="https://www.facebook.com/sharer/sharer.php?u=https://silvestertea.github.io/order-your-brews/" target="_blank" aria-label="Share on Facebook">
+                        <img src="facebook.png" alt="Facebook" width="20"> Facebook
+                    </a>
+                    <ahref="https://twitter.com/intent/tweet?url=https://silvestertea.github.io/order-your-brews/" target="_blank" aria-label="Share on Twitter">
+                        <img src="twitter.png" alt="Twitter" width="20"> Twitter
+                    </a>
+                    <ahref="https://api.whatsapp.com/send?text=Check%20this%20out:%20https://yourwebsite.com" target="_blank" aria-label="Share on WhatsApp">
+                        <img src="whatsapp.png" alt="WhatsApp" width="20"> WhatsApp
+                    </a>
+                </div>
+                </article>
+                <article>
+                <h3>Best Teas for Relaxation</h3>
+                <p>Learn which teas help you unwind and relax...</p>
+                <a href="read-more.html" class="button">Read More</a>
+            </article>
+            <article>
+                <h3>Tea Brewing Tips</h3>
+                <p>Enhance your tea experience with these brewing tips...</p>
+                <a href="read-more.html" class="button">Read More</a>
+            </article>
+            <section class="comment-section">
+                <h3>Leave a Comment</h3>
+                <textarea placeholder="Write your comment..."></textarea>
+                <button type="submit">Submit</button>
+            </section>
+        </section>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h3>Recent Posts</h3>
+            <ul>
+                <li><a href="#">Tea and Meditation</a></li>
+                <li><a href="#">History of Tea</a></li>
+                <li><a href="#">Top 5 Herbal Teas</a></li>
+            </ul>
+            <h3>Categories</h3>
+            <ul>
+                <li><a href="#">Health</a></li>
+                <li><a href="#">Brewing Tips</a></li>
+                <li><a href="#">Culture</a></li>
+            </ul>
+        </aside>
+    </div>
+    
+    <footer>
+        <p>&copy; 2025 Silvester's Tea Services. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

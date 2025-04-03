@@ -1,0 +1,68 @@
+/* Background Styling */
+.hero {
+    background: url('tea-background.jpg') center/cover no-repeat;
+    text-align: center;
+    padding: 100px 20px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Text Enhancements */
+.welcome-text {
+    font-size: 3rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    background: linear-gradient(to right, #ff7e5f, #feb47b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+/* Subtext Styling */
+.tagline {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0 0 5px rgba(255, 215, 0, 0.8);
+    transition: text-shadow 0.5s ease-in-out;
+}
+
+.tagline:hover {
+    text-shadow: 0 0 10px rgba(255, 215, 0, 1), 0 0 20px rgba(255, 215, 0, 1);
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+</style>
+
+<div class="video-container">
+    <video autoplay muted loop id="background-video">
+        <source src="Coffee Video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+
+.video-container {
+    position: relative; /* Keep it relative to the section */
+    width: 100%; /* Make it responsive to the section width */
+    max-width: 600px; /* Set a maximum width to prevent it from being too large */
+    height: auto; /* Maintain aspect ratio */
+    margin: 0 auto; /* Center the video horizontally */
+    overflow: hidden; /* Hide any overflow content */
+}
+
+#background-video {
+    width: 100%; /* Ensure the video fits within the container */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: cover; /* Ensure the video scales proportionally */
+}

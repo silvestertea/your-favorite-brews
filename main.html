@@ -1,0 +1,304 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Silvester's Tea Services</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+    (function(){
+        emailjs.init({
+            publicKey: "p9BmUatJO9Nn3Dmaw",
+        });
+    })();
+    function toggleMenu() {
+    var menu = document.getElementById("nav-menu");
+    menu.classList.toggle("show-menu"); // Add/remove class to show menu
+    }
+    </script>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            margin: 0;
+            padding: 0;
+            color: black;
+            background-color: #faf3e0;
+            margin-top: 60px;
+        }
+
+        /* Header */
+        header {
+            background-color: rgba(58, 95, 11, 0.7);
+            padding: 15px;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo img {
+            max-width: 50px;
+            margin-left: 15px;
+        }
+
+        /* Navigation */
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            flex-grow: 1;
+        }
+
+        nav ul li {
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #FFD700;
+        }
+
+        /* Background Video */
+        .video-background {
+            position: fixed;
+            top: 20px;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0.4;
+        }
+
+        /* Gallery Grid */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            padding: 20px;
+            justify-content: center;
+        }
+
+        .gallery-item {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .gallery-item img {
+            width: 100px;
+            height: 80px;
+            border-radius: 5px;
+        }
+
+        .gallery-item h3 {
+            margin: 5px 0;
+            font-size: 14px;
+            color: #3A5F0B;
+        }
+
+        .gallery-item p {
+            font-size: 12px;
+            font-weight: bold;
+            color: #333;
+        }
+    /* Existing styles above... */
+
+    @media (max-width: 600px) {
+        .gallery {
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        }
+        .gallery-item img {
+            width: 120px;
+            height: 100px;
+        }
+    }
+    /* Hide the menu by default on small screens */
+@media (max-width: 768px) {
+    nav {
+        display: none; /* Hide menu initially */
+        flex-direction: column;
+        background: rgba(58, 95, 11, 0.9); /* Darker background */
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+
+    .hamburger {
+        display: block;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+        padding: 10px;
+    }
+}
+
+/* Show menu when active */
+nav.show-menu {
+    display: flex;
+}
+
+    </style>
+
+    <script>
+        function redirectToOrder(name, image, price) {
+            localStorage.setItem('teaName', name);
+            localStorage.setItem('teaImage', image);
+            localStorage.setItem('teaPrice', price);
+            window.location.href = 'order.html';
+        }
+</script>
+</head>
+<body>
+    <video class="video-background" autoplay loop muted>
+        <source src="coffee-video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <header>
+        <div class="logo">
+            <img src="tealogo.jpg" alt="Silvester's Tea Logo">
+        </div>
+        <button class="hamburger" onclick="toggleMenu()">☰</button>
+        <nav aria-label="Main Navigation" id="nav-menu"> 
+            <ul>
+                <li><a href="main.html">Main</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="service.html">Services</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+        </div>
+    </header>
+
+    <h2style="text-align: center;">Our Premium Tea Selection</h2>
+
+    <div class="gallery">
+        <div class="gallery-item" onclick="redirectToOrder('Green Tea', 'green-tea.jpg', '₹50')">
+            <img src="green-tea.jpg" alt="Green Tea">
+            <h3>Green Tea</h3>
+            <p>₹50</p>
+        </div>
+        <div class="gallery-item" onclick="redirectToOrder('Mocha Coffee', 'Mocha_coffee.jpg', '₹40')">
+            <img src="Mocha_coffee.jpg" alt="Mocha Coffee">
+            <h3>Mocha Coffee</h3>
+            <p>₹40</p>
+        </div>
+        <div class="gallery-item" onclick="redirectToOrder('Espresso', 'Espresso.jpg', '₹47')">
+            <img src="Espresso.jpg" alt="Espresso">
+            <h3>Espresso</h3>
+            <p>₹47</p>
+        </div>
+        <div class="gallery-item" onclick="redirectToOrder('White Tea', 'white-tea.jpg', '₹35')">
+            <img src="white-tea.jpg" alt="White Tea">
+            <h3>White Tea</h3>
+            <p>₹35</p>
+        </div>
+        <div class="gallery-item" onclick="redirectToOrder('Black Coffee', 'black-coffee.jpg', '₹30')">
+            <img src="black-coffee.jpg" alt="Black Coffee">
+            <h3>Black Coffee</h3>
+            <p>₹30</p>
+        </div>
+        <div class="gallery-item" onclick="redirectToOrder('Herbal Tea', 'her-tea.jpg', '₹45')">
+            <img src="her-tea.jpg" alt="Herbal Tea">
+            <h3>Herbal Tea</h3>
+            <p>₹45</p>
+        </div>
+        <div class="gallery-item" onclick="redirectToOrder('Normal Tea', 'tea.jpg', '₹10')">
+            <img src="tea.jpg" alt="Normal Tea">
+            <h3>Normal Tea</h3>
+            <p>₹10</p>
+        </div>
+        <div class="gallery-item" onclick="redirectToOrder('Black Tea', 'tea4.jpg', '₹20')">
+            <img src="tea4.jpg" alt="Black Tea">
+            <h3>Black Tea</h3>
+            <p>₹20</p>
+        </div>
+        <div class="gallery-item" onclick="redirectToOrder('Green Tea', 'green-tea.jpg', '₹50')">
+            <img src="green-tea.jpg" alt="Green Tea">
+            <h3>Green Tea</h3>
+            <p>₹50</p>
+        </div>
+        <div class="gallery-item" onclick="redirectToOrder('Mocha Coffee', 'Mocha_coffee.jpg', '₹40')">
+            <img src="Mocha_coffee.jpg" alt="Mocha Coffee">
+            <h3>Mocha Coffee</h3>
+            <p>₹40</p>
+        </div>
+        <div class="gallery-item" onclick="redirectToOrder('Espresso', 'Espresso.jpg', '₹47')">
+            <img src="Espresso.jpg" alt="Espresso">
+            <h3>Espresso</h3>
+            <p>₹47</p>
+        </div>
+        <div class="gallery-item" onclick="redirectToOrder('White Tea', 'white-tea.jpg', '₹35')">
+            <img src="white-tea.jpg" alt="White Tea">
+            <h3>White Tea</h3>
+            <p>₹35</p>
+        </div>
+        <div class="gallery-item" onclick="redirectToOrder('Black Coffee', 'black-coffee.jpg', '₹30')">
+            <img src="black-coffee.jpg" alt="Black Coffee">
+            <h3>Black Coffee</h3>
+            <p>₹30</p>
+        </div>
+        <div class="gallery-item" onclick="redirectToOrder('Herbal Tea', 'her-tea.jpg', '₹45')">
+            <img src="her-tea.jpg" alt="Herbal Tea">
+            <h3>Herbal Tea</h3>
+            <p>₹45</p>
+        </div>
+        <div class="gallery-item" onclick="redirectToOrder('Normal Tea', 'tea.jpg', '₹10')">
+            <img src="tea.jpg" alt="Normal Tea">
+            <h3>Normal Tea</h3>
+            <p>₹10</p>
+        </div>
+        <div class="gallery-item" onclick="redirectToOrder('Black Tea', 'tea5.jpg', '₹20')">
+            <img src="tea5.jpg" alt="Black Tea">
+            <h3>Black Tea</h3>
+            <p>₹20</p>
+        </div>         
+    </div>
+</body>
+</html>

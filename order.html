@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Your Brew</title>
+    <link rel="stylesheet" href="styles.css">
+   
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init({
+        publicKey: "vJWjbNfEwIOJqxeUq",
+      });
+   })(); 
+</script> 
+<script src="script.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 60%;
+            max-width: 200px;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .selected-brew img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+
+        .cart-container {
+            background: #fff;
+            padding: 8px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 15px;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .cart-item img {
+            width: 35px;
+            height: 35px;
+            border-radius: 5px;
+        }
+
+        #total-cost {
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        button {
+            width: auto;
+            padding: 6px 12px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 13px;
+            margin-top: 8px;
+        }
+
+        #confirm-button {
+            background: #28a745;
+            color: white;
+        }
+
+        #confirm-button:hover {
+            background: #218838;
+        }
+
+        #more-items {
+            background: blue;
+            color: white;
+        }
+
+        .client-form input {
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .client-form label {
+            text-align: left;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .client-form select {
+            width: 100%;
+            padding: 5px;
+            margin: 5px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                max-width: 600px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .container {
+                max-width: 750px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Order Your Brew</h2>
+        <div class="selected-brew">
+            <img id="selected-item-image" src="" alt="Selected Item">
+            <h3 id="selected-item-name"></h3>
+            <p id="selected-item-price"></p>
+            <button id="add-to-cart">Add to Cart</button>
+        </div>
+        <div class="cart-container">
+            <h3>Your Cart</h3>
+            <div id="cart-items"></div>
+            <p id="total-cost">Total Cost: $0.00</p>
+        </div>
+
+        <div class="client-form">
+            <button id="more-items" onclick="window.location.href='main.html'">Add More Items</button>
+            <h3>Fill this details</h3>
+            <label for="name">Name:</label>
+            <input type="text" id="name" placeholder="Enter your name">
+            <label for="gender">Gender:</label>
+            <select id="gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="others">Others</option>
+            </select>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" placeholder="Enter your email">
+
+            <label for="address">Address:</label>
+            <input type="text" id="address" placeholder="Enter your address">
+
+            <label for="contact">Contact Number:</label>
+            <input type="tel" id="contact" placeholder="Enter your contact number">
+
+            <label for="payment-method">Payment Method:</label>
+            <select id="payment-method">
+                <option value="credit">Credit Card</option>
+                <option value="paytm">Paytm</option>
+                <option value="cash">Cash on Delivery</option>
+            </select>
+        </div>
+
+        <button id="confirm-button">Confirm Order</button>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const name = localStorage.getItem("teaName");
+            const image = localStorage.getItem("teaImage");
+            const price = localStorage.getItem("teaPrice");
+            const selectedItemImage = document.getElementById("selected-item-image");
+            const selectedItemName = document.getElementById("selected-item-name");
+            const selectedItemPrice = document.getElementById("selected-item-price");
+            const totalCostElement = document.getElementById("total-cost");
+
+            if (name && image && price) {
+                selectedItemName.textContent = name;
+                selectedItemPrice.textContent = `Price: ${price}`;
+                selectedItemImage.src = image;
+                selectedItemImage.alt = name;
+            } else {
+                document.getElementById("order-container").innerHTML = "<p>No item selected.</p>";
+            }
+
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            const cartContainer = document.getElementById("cart-items");
+
+            function renderCart() {
+                 cartContainer.innerHTML = cart.map((item, main) => 
+                    `<div class="cart-item">
+                       <p>${item.name} - ${item.price}</p>
+                       <img src="${item.image}" width="50"> 
+                       <button class="remove-btn" data-main="${main}">Remove</button>
+                    </div>`
+                ).join("");
+                updateTotalCost();
+       }
+            function updateTotalCost() {
+                let totalCost = cart.reduce((sum, item) => sum + parseFloat(item.price.replace(/[^0-9.]/g, "")), 0);
+                function renderCart() {
+    cartContainer.innerHTML = cart.map((item, main) => 
+        `<div class="cart-item">
+            <p>${item.name} - ${item.price}</p>
+            <img src="${item.image}" width="50"> 
+            <button class="remove-btn" data-main="${main}">Remove</button>
+        </div>`
+    ).join("");
+    updateTotalCost();
+}
+            }
+
+            document.getElementById("add-to-cart").addEventListener("click", function () {
+                if (name && price && image) {
+                    cart.push({ name, price, image });
+                    localStorage.setItem("cart", JSON.stringify(cart));
+                    renderCart();
+                }
+            });
+
+            cartContainer.addEventListener("click", function (event) {
+                if (event.target.classList.contains("remove-btn")) {
+                    const main = event.target.dataset.main;
+                    cart.splice(main, 1);
+                    localStorage.setItem("cart", JSON.stringify(cart));
+                    renderCart();
+                }
+            });
+
+            renderCart();
+
+            document.getElementById("confirm-button").addEventListener("click", function () {
+                const clientDetails = {
+                    clientName: document.getElementById("name").value,
+                    clientGender:document.getElementById("gender").value,
+                    clientEmail: document.getElementById("email").value,
+                    clientAddress: document.getElementById("address").value,
+                    clientContact: document.getElementById("contact").value,
+                    paymentMethod: document.getElementById("payment-method").value,
+                    cart: cart
+                };
+
+                localStorage.setItem("orderDetails", JSON.stringify(clientDetails));
+                window.location.href = "confirm.html";
+            });
+        });
+    </script>
+</body>
+</html>

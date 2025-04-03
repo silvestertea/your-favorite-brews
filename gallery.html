@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Silvester's Tea Services</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+       /* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background-color: #f8f8f8;
+}
+
+/* Header */
+header {
+    background-color: #2E8B57;
+    padding: 15px;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+/* Navigation */
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #FFD700;
+}
+
+/* Hero Section */
+.hero {
+    background: url('tea-master-pouring-green.png') no-repeat center center/cover;
+    height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+    padding: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-top: 60px; /* Prevent content from being hidden behind the fixed header */
+}
+
+/* Main Content Container */
+.container {
+    max-width: 1100px;
+    margin: 80px auto 20px;
+    padding: 15px;
+    text-align: center;
+}
+
+/* Gallery Styles */
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.gallery-item {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 10px;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    text-align: center;
+    position: relative;
+    width: 180px;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    transition: transform 0.3s ease-in-out;
+}
+
+.gallery-item img:hover {
+    transform: scale(1.1);
+}
+
+/* Gallery Item Titles */
+.gallery-item h3 {
+    margin-top: 5px;
+    font-size: 14px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    text-align: center;
+}
+
+/* Scrollable Gallery Container */
+.gallery-container {
+    overflow-y: auto;
+    max-height: 500px;
+    max-width: 100%;
+}
+
+/* CTA Button */
+.cta {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.cta a {
+    display: inline-block;
+    background: #2E8B57;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+.cta a:hover {
+    background: #246A4C;
+}
+
+/* Footer */
+footer {
+    background-color: #2E8B57;
+    text-align: center;
+    padding: 12px;
+    color: white;
+    margin-top: 30px;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="service.html">Services</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div class="hero"><span>Explore Our Tea Collection</span></div>
+    
+    <section class="container">
+        <h2>Our Premium Tea Selection</h2>
+        <div class="gallery-container">
+            <div class="gallery">
+                <div class="gallery-item"><img src="tea.jpg" alt="Tea "><h3>Green Tea</h3></div>
+                <div class="gallery-item"><img src="tea2.jpg" alt="Tea 2"><h3>Black Tea</h3></div>
+                <div class="gallery-item"><img src="tea9.jpg" alt="Tea 1"><h3>Herbal Tea</h3></div>
+                <div class="gallery-item"><img src="tea4.jpg" alt="Tea 4"><h3>Oolong Tea</h3></div>
+                <div class="gallery-item"><img src="tea5.jpg" alt="Tea 5"><h3>White Tea</h3></div>
+                <div class="gallery-item"><img src="tea6.jpg" alt="Tea 6"><h3>Matcha Tea</h3></div>
+                <div class="gallery-item"><img src="tea17.jpg" alt="Tea 7"><h3>Chai Tea</h3></div>
+                <div class="gallery-item"><img src="tea8.jpg" alt="Tea 8"><h3>Pu-erh Tea</h3></div>
+                <div class="gallery-item"><img src="tea11.jpg" alt="Tea 1"><h3>Green Tea</h3></div>
+                <div class="gallery-item"><img src="tea12.jpg" alt="Tea 2"><h3>Black Tea</h3></div>
+                <div class="gallery-item"><img src="tea13.jpg" alt="Tea 3"><h3>Herbal Tea</h3></div>
+                <div class="gallery-item"><img src="tea14.jpg" alt="Tea 4"><h3>Oolong Tea</h3></div>
+                <div class="gallery-item"><img src="tea15.jpg" alt="Tea 5"><h3>White Tea</h3></div>
+                <div class="gallery-item"><img src="tea16.jpg" alt="Tea 6"><h3>ESpresso Tea</h3></div>
+                <div class="gallery-item"><img src="tea10.jpg" alt="Tea 7"><h3>Chai Tea</h3></div>
+                <div class="gallery-item"><img src="tea12.jpg" alt="Tea 8"><h3>Pu-erh Tea</h3></div>
+
+            </div>
+        </div>
+    </section>
+    
+    <div class="cta">
+        <a href="services.html">Explore Our Services</a>
+    </div>
+    
+    <footer>
+        <p>&copy; 2025 Silvester's Tea Services. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

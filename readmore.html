@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - Silvester's Tea Services</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Georgia', serif;
+            background: url('cutephoto.png') no-repeat center center fixed;
+            background-size: cover;
+            color: black;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: rgba(76, 175, 80, 0.9);
+            padding: 15px 0;
+            text-align: center;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background 0.3s ease, transform 0.2s;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            background: rgba(62, 142, 65, 0.9);
+            transform: scale(1.1);
+        }
+
+        /* Services Section */
+        .services {
+            text-align: center;
+            padding: 50px;
+        }
+
+        .service-box {
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            width: 60%;
+            margin-top: 20px;
+            text-align: left;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            background: rgba(232, 245, 233, 0.7);
+            padding: 50px;
+            text-align: center;
+        }
+
+        .testimonial {
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(8px);
+            padding: 20px;
+            margin: 10px auto;
+            width: 60%;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .testimonial:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: rgba(76, 175, 80, 0.9);
+            color: white;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="service.html" class="active">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="blog.html">Blog</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="services">
+        <h2>Our Services</h2>
+        <div class="service-box">
+            <h3>🍵 Premium Tea & Coffee Selections</h3>
+            <p>We source our teas and coffees from the world's best plantations, ensuring premium taste and quality in every sip.</p>
+        </div>
+        <div class="service-box">
+            <h3>🏡 Home & Office Delivery</h3>
+            <p>Enjoy hassle-free delivery of your favorite tea and coffee blends right to your doorstep, fresh and aromatic.</p>
+        </div>
+        <div class="service-box">
+            <h3>🎉 Tea Party & Event Catering</h3>
+            <p>Hosting an event? Let us take care of your tea and coffee catering needs with a curated menu and professional service.</p>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <h2>What Our Customers Say</h2>
+        <div class="testimonial">
+            <p>"Silvester's Tea is the best! Their blends are rich and flavorful hence, I'll order again and again!" Rebecca</p>
+        </div>
+        <div class="testimonial">
+            <p>"Fast delivery and excellent customer service. Highly recommend!" Stephen Petoa</p>
+        </div>
+        <div class="testimonial">
+            <p>"The tea tasting workshops were an amazing experience and I love every bit of it!" Joseph T.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Silvester's Tea Services. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

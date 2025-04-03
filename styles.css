@@ -1,0 +1,133 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to right, #ffecd2, #fcb69f);
+    text-align: center;
+    padding: 20px;
+    margin: 0;
+}
+
+/* Container for the Order Page */
+.container {
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    color: black;
+}
+
+/* Navigation Styles */
+nav {
+    background: #333;
+    padding: 10px;
+}
+
+nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #ff6f61;
+}
+
+/* Selected Brew Section */
+.selected-brew img {
+    width: 200px; 
+    height: auto; 
+    max-height: 200px;
+    border-radius: 10px;
+    display: block;
+    margin: 10px auto;
+}
+
+/* Buttons */
+button {
+    background: #ff6f61;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #e65c50;
+}
+
+/* Shopping Cart Section */
+#cart {
+    margin-top: 20px;
+    padding: 10px;
+    background: #f8f8f8;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#cart ul {
+    list-style: none;
+    padding: 0;
+}
+
+#cart li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+/* Delete Button */
+.delete-btn {
+    background: red;
+    padding: 5px 10px;
+    font-size: 12px;
+}
+
+/* Form Inputs */
+input, select {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Order Confirmation Button */
+#confirm-button {
+    background: #28a745;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+#confirm-button:hover {
+    background: #218838;
+}
+
+/* Order Actions */
+#order-actions {
+    margin-top: 20px;
+}
+
+#continue-shopping {
+    background: #007bff;
+}
+
+#continue-shopping:hover {
+    background: #0056b3;
+}
+
+#cancel-order {
+    background: #dc3545;
+}
+
+#cancel-order:hover {
+    background: #c82333;
+}
