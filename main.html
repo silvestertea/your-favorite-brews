@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,20 +7,13 @@
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-    <script type="text/javascript"
-    src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
-    </script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script type="text/javascript">
-    (function(){
-        emailjs.init({
-            publicKey: "p9BmUatJO9Nn3Dmaw",
-        });
-    })();
-    <script>
-function toggleMenu() {
-    const navMenu = document.querySelector("#nav-menu ul");
-    navMenu.classList.toggle("show-menu");
-}
+        (function() {
+            emailjs.init({
+                publicKey: "p9BmUatJO9Nn3Dmaw",
+            });
+        })();
     </script>
     <style>
         body {
@@ -30,7 +22,7 @@ function toggleMenu() {
             padding: 0;
             color: black;
             background-color: #faf3e0;
-            margin-top: 60px;
+            padding-top: 80px; /* Add space below the fixed navigation bar */
         }
 
         /* Header */
@@ -56,8 +48,8 @@ function toggleMenu() {
         /* Navigation */
         nav ul {
             list-style: none;
-            padding: 0;
-            margin: 0;
+            padding: 5;
+            margin: 2;
             display: flex;
             justify-content: center;
             flex-grow: 1;
@@ -66,11 +58,10 @@ function toggleMenu() {
         nav ul li {
             margin: 0 10px;
         }
-
         nav ul li a {
             color: white;
             text-decoration: none;
-            font-size: 14px;
+            font-size: 12px;
             font-weight: bold;
             transition: color 0.3s;
         }
@@ -82,7 +73,7 @@ function toggleMenu() {
         /* Background Video */
         .video-background {
             position: fixed;
-            top: 20px;
+            top: 0;
             left: 0;
             width: 100%;
             height: 100%;
@@ -95,22 +86,16 @@ function toggleMenu() {
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            padding: 20px;
+            gap: 2px;
+            padding: 2px;
             justify-content: center;
         }
-        .gallery {
-           margin-top: 100px; /* for spacing under fixed header */
-        
-        .price {
-           color: #3A5F0B;
-           font-weight: bold;
-         }
+
         .gallery-item {
             background: rgba(255, 255, 255, 0.2);
-            padding: 10px;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            padding: 3px;
+            border-radius: 5px;
+            box-shadow: 0 1cap 5px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
             text-align: center;
@@ -118,13 +103,14 @@ function toggleMenu() {
 
         .gallery-item:hover {
             transform: scale(1.05);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 3cap 5px rgba(0, 0, 0, 0.2);
         }
 
         .gallery-item img {
-            width: 100px;
-            height: 80px;
-            border-radius: 5px;
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            object-fit: cover;
         }
 
         .gallery-item h3 {
@@ -134,101 +120,68 @@ function toggleMenu() {
         }
 
         .gallery-item p {
-            font-size: 12px;
+            font-size: 14px;
             font-weight: bold;
             color: #333;
         }
-    /* Existing styles above... */
 
-    @media (max-width: 600px) {
-        .gallery {
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        }
-        .gallery-item img {
-            width: 120px;
-            height: 100px;
-        }
+        @media (max-width: 600px) {
+    .gallery {
+        grid-template-columns: repeat(2, 1fr); /* Display two columns on mobile view */
     }
-    .hamburger {
-            display: none;
-            font-size: 24px;
-            background: none;
-            border: none;
-            color: white;
-            cursor: pointer;
-        }
+}
+.hamburger {
+    display: none; /* Hidden by default */
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    z-index: 1001; /* Ensure it appears above other elements */
+}
 
         nav {
             position: relative;
         }
 
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-        }
-
-        nav ul li {
-            margin: 0 12px;
-        }
-
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: bold;
-            transition: color 0.3s;
-        }
-
-        nav ul li a:hover {
-            color: #FFD700;
-        }
-
-      @media (max-width: 768px) {
-    nav ul {
-        display: none;
-        flex-direction: column;
+       
+/* Mobile View */
+@media (max-width: 768px) {
+    .hamburger {
+        display: block; /* Show hamburger button on small screens */
         position: absolute;
-        top: 60px;
-        right: 0;
-        background-color: rgba(58, 95, 11, 0.95);
-        width: 200px;
-        text-align: center;
-        border-radius: 5px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        top: 15px;
+        right: 15px;
     }
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                background-color: rgba(58, 95, 11, 0.95);
+                width: 200px;
+                text-align: center;
+                border-radius: 5px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            }
 
-    nav ul.show-menu {
-        display: flex;
-    }
-}
-            h2 {
-               margin-top: 80px; /* Add space below the fixed navigation bar */
-               text-align: center; /* Center the heading */
-               font-size: 2rem; /* Adjust font size for better visibility */
-               color: #3A5F0B; /* Match the theme color */
-               }
-            nav ul.show-menu  {
+            nav ul.show-menu {
                 display: flex;
             }
+
             nav ul li {
                 padding: 10px;
                 width: 100%;
             }
         }
 
-        .hero {
-            position: relative;
+        h2 {
             text-align: center;
-            color: white;
-            padding: 100px 20px;
-            font-size: 22px;
-            min-height: 100vh;
-            overflow: hidden;
+            font-size: 2rem;
+            color: #3A5F0B;
         }
     </style>
-
     <script>
         function redirectToOrder(name, image, price) {
             localStorage.setItem('teaName', name);
@@ -236,7 +189,12 @@ function toggleMenu() {
             localStorage.setItem('teaPrice', price);
             window.location.href = 'order.html';
         }
-</script>
+         // Hamburger menu toggle functionality
+    function toggleMenu() {
+        const menu = document.getElementById("nav-menu").querySelector("ul");
+        menu.classList.toggle("show-menu");
+    }
+    </script>
 </head>
 <body>
     <video class="video-background" autoplay loop muted>
@@ -260,10 +218,9 @@ function toggleMenu() {
                 <li><a href="about.html">About</a></li>
             </ul>
         </nav>
-        </div>
     </header>
 
-   <h2 style="text-align: center;">Make Your Order</h2>
+    <h2>Make Your Order</h2>
 
     <div class="gallery">
         <div class="gallery-item" onclick="redirectToOrder('Couples Tea', 'tea2.jpg', '₹200')">
@@ -297,7 +254,7 @@ function toggleMenu() {
             <p>₹45</p>
         </div>
         <div class="gallery-item" onclick="redirectToOrder('Normal Tea', 'tea.jpg', '₹10')">
-           
+            <img src="tea.jpg" alt="Black Tea" loading="lazy">   
             <h3>Normal Tea</h3>
             <p>₹10</p>
         </div>
@@ -341,9 +298,9 @@ function toggleMenu() {
             <h3>TeaSTock</h3>
             <p>₹10</p>
         </div>
-        <div class="gallery-item" onclick="redirectToOrder('Black Tea', 'tea5.jpg', '₹20')">
-            <img src="tea5.jpg" alt="Black Tea" loading="lazy">
-            <h3>Black Tea</h3>
+        <div class="gallery-item" onclick="redirectToOrder('First Date', 'tea5.jpg', '₹20')">
+            <img src="tea5.jpg" alt="First Date" loading="lazy">
+            <h3>First Date</h3>
             <p>₹20</p>
         </div>      
         <div class="gallery-item" onclick="redirectToOrder('Pure COffe', 'tea15.jpg', '₹30')">
@@ -369,4 +326,3 @@ function toggleMenu() {
     </div>
 </body>
 </html>
-
