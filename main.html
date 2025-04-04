@@ -142,39 +142,76 @@
             height: 100px;
         }
     }
-    /* Hide the menu by default on small screens */
-    @media (max-width: 768px) {
     .hamburger {
-        display: block;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%); /* Center the hamburger menu */
-        background: none;
-        border: none;
-        color: white;
-        font-size: 24px;
-        cursor: pointer;
-        z-index: 1001; /* Ensure it appears above other elements */
-    }
+            display: none;
+            font-size: 24px;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
 
-    nav {
-        display: none; /* Hide the menu initially */
-        flex-direction: column;
-        background: rgba(58, 95, 11, 0.9); /* Darker background */
-        position: absolute;
-        top: 60px;
-        left: 0;
-        width: 100%;
-        text-align: center;
-        padding: 10px 0;
-    }
+        nav {
+            position: relative;
+        }
 
-    nav.show-menu {
-        display: flex; /* Show the menu when active */
-    }
-}
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
 
+        nav ul li {
+            margin: 0 12px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #FFD700;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                background-color: rgba(58, 95, 11, 0.95);
+                width: 200px;
+                text-align: center;
+                border-radius: 5px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            }
+            nav ul.active {
+                display: flex;
+            }
+            nav ul li {
+                padding: 10px;
+                width: 100%;
+            }
+        }
+
+        .hero {
+            position: relative;
+            text-align: center;
+            color: white;
+            padding: 100px 20px;
+            font-size: 22px;
+            min-height: 100vh;
+            overflow: hidden;
+        }
     </style>
 
     <script>
