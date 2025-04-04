@@ -41,6 +41,10 @@
             cursor: pointer;
         }
 
+        nav {
+            position: relative;
+        }
+
         nav ul {
             list-style: none;
             padding: 0;
@@ -64,50 +68,52 @@
             color: #FFD700;
         }
 
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                background-color: rgba(58, 95, 11, 0.95);
+                width: 200px;
+                text-align: center;
+                border-radius: 5px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            }
+            nav ul.active {
+                display: flex;
+            }
+            nav ul li {
+                padding: 10px;
+                width: 100%;
+            }
+        }
+
         .hero {
             position: relative;
             text-align: center;
             color: white;
             padding: 100px 20px;
             font-size: 22px;
+            min-height: 100vh;
             overflow: hidden;
         }
-
         .video-background {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain; /* Ensure the video fits within the container without cropping */
             z-index: -2;
             filter: brightness(50%);
+            background-color: black; /* Add a fallback background color */
         }
-
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.4);
-            z-index: -1;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 600px;
-            margin: auto;
-            animation: fadeIn 2s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .btn {
+        .hero-content .btn {
             display: inline-block;
             background: #3A5F0B;
             color: white;
@@ -120,46 +126,57 @@
             box-shadow: 0px 0px 10px rgba(255, 215, 0, 0.6);
         }
 
-        .btn:hover {
+        .hero-content .btn:hover {
             background: #FFD700;
             color: black;
             box-shadow: 0px 0px 20px rgba(255, 215, 0, 1);
         }
 
-        .featured-teas {
-            padding: 20px;
-        }
-
-        .tea-grid {
+        .homepage-gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 10px;
+            gap: 15px;
             padding: 20px;
             max-width: 1200px;
             margin: auto;
         }
 
-        .tea-item {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 20px;
+        .homepage-gallery img {
+            width: 100%;
+            height: auto;
             border-radius: 10px;
-            text-align: center;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
+        .footer {
+    background-color: rgba(58, 95, 11, 0.85); /* Match the header background */
+    color: white;
+    text-align: center;
+    padding: 20px 10px;
+    margin-top: 20px;
+    font-size: 14px;
+    position: relative;
+    z-index: 1;
+}
 
-        .tea-item img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-radius: 5px;
-        }
+.footer-content {
+    max-width: 1200px;
+    margin: auto;
+}
 
-        footer {
-            background: rgba(58, 95, 11, 0.85);
-            color: white;
-            padding: 15px;
-            font-size: 14px;
-        }
+.footer-content p {
+    margin: 5px 0;
+}
+
+.footer-content .social-links a {
+    color: #FFD700; /* Golden color for links */
+    text-decoration: none;
+    margin: 0 5px;
+    transition: color 0.3s ease;
+}
+
+.footer-content .social-links a:hover {
+    color: white; /* Change to white on hover */
+}
     </style>
 </head>
 <body>
@@ -167,8 +184,9 @@
         <div class="logo">
             <img src="tealogo.jpg" alt="Silvester's Tea Logo">
         </div>
+        <button class="hamburger" onclick="toggleMenu()">&#9776;</button>
         <nav>
-            <ul>
+            <ul id="nav-menu">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="main.html">Main</a></li>
                 <li><a href="service.html">Services</a></li>
@@ -184,29 +202,34 @@
         <video class="video-background" autoplay loop muted>
             <source src="coffee-video.mp4" type="video/mp4">
         </video>
-        <div class="hero-overlay"></div>
         <div class="hero-content">
             <a href="main.html" class="btn">Explore Our Collection</a>
-            <p>Experience the finest selection of premium teas and coffee blends.</p>
         </div>
     </section>
-
-    <section class="featured-teas">
-        <h2>Featured Selections</h2>
-        <div class="tea-grid">
-            <div class="tea-item">
-                <img src="green-tea.jpg" alt="Green Tea">
-                <h3>Green Tea</h3>
-            </div>
-            <div class="tea-item">
-                <img src="mocha-coffee.jpg" alt="Mocha Coffee">
-                <h3>Mocha Coffee</h3>
-            </div>
-            <div class="tea-item">
-                <img src="her-tea.jpg" alt="Herbal Tea">
-                <h3>Herbal Tea</h3>
-            </div>
-        </div>
+    
+    <section class="homepage-gallery">
+        <img src="tea11.jpg" alt="Tea">
+        <img src="tea16.jpg" alt="Tea">
+        <img src="tea17.jpg" alt="Tea">
     </section>
+    
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById("nav-menu");
+            menu.classList.toggle("active");
+        }
+    </script>
+   <footer class="footer">
+    <div class="footer-content">
+        <p>&copy; 2025 Silvester's Tea Services. All Rights Reserved.</p>
+        <div class="social-links">
+            <ahref="https://www.facebook.com" target="_blank">Facebook</a> |
+            <ahref="https://www.twitter.com" target="_blank">Twitter</a> |
+            <ahref="https://www.instagram.com" target="_blank">Instagram</a>
+        </div>
+        <p>Contact us: <a href="silvesterbaraka009@gmail.com">silvesterbaraka009@gmail.com</a></p>
+    </div>
+</footer>
 </body>
 </html>
+
