@@ -17,10 +17,11 @@
             publicKey: "p9BmUatJO9Nn3Dmaw",
         });
     })();
-    function toggleMenu() {
-    var menu = document.getElementById("nav-menu");
-    menu.classList.toggle("show-menu"); // Add/remove class to show menu
-    }
+    <script>
+function toggleMenu() {
+    const navMenu = document.querySelector("#nav-menu ul");
+    navMenu.classList.toggle("show-menu");
+}
     </script>
     <style>
         body {
@@ -98,7 +99,13 @@
             padding: 20px;
             justify-content: center;
         }
-
+        .gallery {
+           margin-top: 100px; /* for spacing under fixed header */
+        
+        .price {
+           color: #3A5F0B;
+           font-weight: bold;
+         }
         .gallery-item {
             background: rgba(255, 255, 255, 0.2);
             padding: 10px;
@@ -178,22 +185,24 @@
             color: #FFD700;
         }
 
-        @media (max-width: 768px) {
-            .hamburger {
-                display: block;
-            }
-            nav ul {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 60px;
-                right: 0;
-                background-color: rgba(58, 95, 11, 0.95);
-                width: 200px;
-                text-align: center;
-                border-radius: 5px;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            }
+      @media (max-width: 768px) {
+    nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background-color: rgba(58, 95, 11, 0.95);
+        width: 200px;
+        text-align: center;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    nav ul.show-menu {
+        display: flex;
+    }
+}
             h2 {
                margin-top: 80px; /* Add space below the fixed navigation bar */
                text-align: center; /* Center the heading */
@@ -258,102 +267,102 @@
 
     <div class="gallery">
         <div class="gallery-item" onclick="redirectToOrder('Couples Tea', 'tea2.jpg', '₹200')">
-            <img src="tea2.jpg" alt="Couples Tea">
+            <img src="tea2.jpg" alt="Couples Tea" loading="lazy">
             <h3>Couples Tea</h3>
             <p>₹200</p>
         </div>
         <div class="gallery-item" onclick="redirectToOrder('Mocha Coffee', 'Mocha_coffee.jpg', '₹40')">
-            <img src="Mocha_coffee.jpg" alt="Mocha Coffee">
+            <img src="Mocha_coffee.jpg" alt="Mocha Coffee" loading="lazy">
             <h3>Mocha Coffee</h3>
             <p>₹40</p>
         </div>
         <div class="gallery-item" onclick="redirectToOrder('Herb-tea', 'her-tea.jpg', '₹47')">
-            <img src="her-tea.jpg" alt="Herb-tea">
+            <img src="her-tea.jpg" alt="Herb-tea" loading="lazy">
             <h3>Herb-tea</h3>
             <p>₹47</p>
         </div>
         <div class="gallery-item" onclick="redirectToOrder(' Gong Fu Cha Tea', 'tea10.jpg', '₹35')">
-            <img src="tea10.jpg" alt=" Gong Fu Cha Tea">
+            <img src="tea10.jpg" alt=" Gong Fu Cha Tea" loading="lazy">
             <h3> Gong Fu Cha Tea</h3>
             <p>₹35</p>
         </div>
         <div class="gallery-item" onclick="redirectToOrder('Black Coffee', 'black-coffee.jpg', '₹30')">
-            <img src="black-coffee.jpg" alt="Black Coffee">
+            <img src="black-coffee.jpg" alt="Black Coffee" loading="lazy">
             <h3>Black Coffee</h3>
             <p>₹30</p>
         </div>
         <div class="gallery-item" onclick="redirectToOrder('Sun Tea', 'tea12.jpg', '₹45')">
-            <img src="tea12.jpg" alt="Herbal Tea">
+            <img src="tea12.jpg" alt="Herbal Tea" loading="lazy">
             <h3>Sun Tea</h3>
             <p>₹45</p>
         </div>
         <div class="gallery-item" onclick="redirectToOrder('Normal Tea', 'tea.jpg', '₹10')">
-            <img src="tea.jpg" alt="Normal Tea">
+           
             <h3>Normal Tea</h3>
             <p>₹10</p>
         </div>
         <div class="gallery-item" onclick="redirectToOrder('Black Tea', 'tea4.jpg', '₹20')">
-            <img src="tea4.jpg" alt="Black Tea">
+             <img src="tea4.jpg" alt="Black Tea" loading="lazy">
             <h3>Black Tea</h3>
             <p>₹20</p>
         </div>
         <div class="gallery-item" onclick="redirectToOrder('Green Tea', 'green-tea.jpg', '₹50')">
-            <img src="green-tea.jpg" alt="Green Tea">
+            <img src="green-tea.jpg" alt="Green Tea" loading="lazy">
             <h3>Green Tea</h3>
             <p>₹50</p>
         </div>
-        <div class="gallery-item" onclick="redirectToOrder('Mocha Coffee', 'Mocha_coffee.jpg', '₹40')">
-            <img src="Mocha_coffee.jpg" alt="Mocha Coffee">
-            <h3>Mocha Coffee</h3>
+        <div class="gallery-item" onclick="redirectToOrder('Altimate Breakfast', 'tea11.jpg', '₹40')">
+            <img src="tea11.jpg" alt="Altimate Breakfast" loading="lazy">
+            <h3>Altimate Breakfast</h3>
             <p>₹40</p>
         </div>
         <div class="gallery-item" onclick="redirectToOrder('Espresso', 'Espresso.jpg', '₹47')">
-            <img src="Espresso.jpg" alt="Espresso">
+            <img src="Espresso.jpg" alt="Espresso" loading="lazy">
             <h3>Espresso</h3>
             <p>₹47</p>
         </div>
         <div class="gallery-item" onclick="redirectToOrder('White Tea', 'white-tea.jpg', '₹35')">
-            <img src="white-tea.jpg" alt="White Tea">
+            <img src="white-tea.jpg" alt="White Tea" loading="lazy">
             <h3>White Tea</h3>
             <p>₹35</p>
         </div>
         <div class="gallery-item" onclick="redirectToOrder('Black Coffee', 'black-coffee.jpg', '₹30')">
-            <img src="black-coffee.jpg" alt="Black Coffee">
+            <img src="black-coffee.jpg" alt="Black Coffee" loading="lazy">
             <h3>Black Coffee</h3>
             <p>₹30</p>
         </div>
         <div class="gallery-item" onclick="redirectToOrder('Cult of Matcha', 'tea14.jpg', '₹45')">
-            <img src="tea14.jpg" alt="Herbal Tea">
+            <img src="tea14.jpg" alt="Herbal Tea" loading="lazy">
             <h3>Cult of Matcha</h3>
             <p>₹45</p>
         </div>
         <div class="gallery-item" onclick="redirectToOrder('Tea STock', 'tea-stock.jpg', '₹10')">
-            <img src="tea-stock.jpg" alt="Tea STock">
+            <img src="tea-stock.jpg" alt="Tea STock" loading="lazy">
             <h3>TeaSTock</h3>
             <p>₹10</p>
         </div>
         <div class="gallery-item" onclick="redirectToOrder('Black Tea', 'tea5.jpg', '₹20')">
-            <img src="tea5.jpg" alt="Black Tea">
+            <img src="tea5.jpg" alt="Black Tea" loading="lazy">
             <h3>Black Tea</h3>
             <p>₹20</p>
         </div>      
         <div class="gallery-item" onclick="redirectToOrder('Pure COffe', 'tea15.jpg', '₹30')">
-            <img src="tea15.jpg" alt="Pure Coffee">
+            <img src="tea15.jpg" alt="Pure Coffee" loading="lazy">
             <h3>Pure COffe</h3>
             <p>₹30</p>
         </div>   
         <div class="gallery-item" onclick="redirectToOrder('Red Tea', 'tea17.jpg', '₹15')">
-            <img src="tea17.jpg" alt="Red Tea">
+            <img src="tea17.jpg" alt="Red Tea" loading="lazy">
             <h3>Red Tea</h3>
             <p>₹15</p>
         </div>  
         <div class="gallery-item" onclick="redirectToOrder('Green Matcha Tea', 'greenmatchatea.jpg', '₹15')">
-            <img src="greenmatchatea.jpg" alt="Green Matcha Tea">
+            <img src="greenmatchatea.jpg" alt="Green Matcha Tea" loading="lazy">
             <h3>Green Matcha Tea</h3>
             <p>₹15</p>
         </div>     
         <div class="gallery-item" onclick="redirectToOrder('Altimate Boffe', 'coffee.jpg', '₹34')">
-            <img src="coffee.jpg" alt="Altimate Boffe">
+            <img src="coffee.jpg" alt="Altimate Boffe" loading="lazy">
             <h3>Altimate Boffe</h3>
             <p>₹34</p>
         </div>              
