@@ -143,9 +143,23 @@
         }
     }
     /* Hide the menu by default on small screens */
-@media (max-width: 768px) {
+    @media (max-width: 768px) {
+    .hamburger {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); /* Center the hamburger menu */
+        background: none;
+        border: none;
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+        z-index: 1001; /* Ensure it appears above other elements */
+    }
+
     nav {
-        display: none; /* Hide menu initially */
+        display: none; /* Hide the menu initially */
         flex-direction: column;
         background: rgba(58, 95, 11, 0.9); /* Darker background */
         position: absolute;
@@ -156,28 +170,9 @@
         padding: 10px 0;
     }
 
-    nav ul {
-        flex-direction: column;
+    nav.show-menu {
+        display: flex; /* Show the menu when active */
     }
-
-    nav ul li {
-        margin: 10px 0;
-    }
-
-    .hamburger {
-        display: block;
-        background: none;
-        border: none;
-        color: white;
-        font-size: 24px;
-        cursor: pointer;
-        padding: 10px;
-    }
-}
-
-/* Show menu when active */
-nav.show-menu {
-    display: flex;
 }
 
     </style>
@@ -216,7 +211,7 @@ nav.show-menu {
         </div>
     </header>
 
-    <h2style="text-align: center;">Our Premium Tea Selection</h2>
+    <h2style="text-align: center;">Make Your Order</h2>
 
     <div class="gallery">
         <div class="gallery-item" onclick="redirectToOrder('Green Tea', 'green-tea.jpg', '₹50')">
@@ -302,3 +297,4 @@ nav.show-menu {
     </div>
 </body>
 </html>
+
