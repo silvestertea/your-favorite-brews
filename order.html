@@ -5,19 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order Your Brew</title>
     <link rel="stylesheet" href="styles.css">
-   
+
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
-</script>
-<script type="text/javascript">
-   (function(){
-      emailjs.init({
-        publicKey: "vJWjbNfEwIOJqxeUq",
-      });
-   })(); 
-</script> 
-<script src="script.js"></script>
+    <script type="text/javascript">
+        (function(){
+            emailjs.init({
+                publicKey: "vJWjbNfEwIOJqxeUq",
+            });
+        })(); 
+    </script> 
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -98,7 +95,7 @@
             color: white;
         }
 
-        .client-form input {
+        .client-form input, .client-form select {
             width: 100%;
             padding: 8px;
             margin: 10px 0;
@@ -110,14 +107,6 @@
             text-align: left;
             display: block;
             margin-bottom: 5px;
-        }
-
-        .client-form select {
-            width: 100%;
-            padding: 5px;
-            margin: 5px 0;
-            border-radius: 5px;
-            border: 1px solid #ccc;
         }
 
         @media (min-width: 768px) {
@@ -145,7 +134,7 @@
         <div class="cart-container">
             <h3>Your Cart</h3>
             <div id="cart-items"></div>
-           <p id="total-cost">Total: ₹0.00</p>
+            <p id="total-cost">Total: ₹0.00</p>
         </div>
 
         <div class="client-form">
@@ -180,7 +169,7 @@
         <button id="confirm-button">Confirm Order</button>
     </div>
 
-   <script>
+    <script>
     document.addEventListener("DOMContentLoaded", function () {
         const name = localStorage.getItem("teaName");
         const image = localStorage.getItem("teaImage");
@@ -202,23 +191,25 @@
         let cart = JSON.parse(localStorage.getItem("cart")) || [];
         const cartContainer = document.getElementById("cart-items");
 
-       function renderCart() {
-        cartContainer.innerHTML = cart.map((item, index) => 
-        `<div class="cart-item">
-            <p>${item.name} - ₹${item.price}</p>
-            <img src="${item.image}" width="50"> 
-            <button class="remove-btn" data-main="${index}">Remove</button>
-        </div>`
-    ).join("");
-    updateTotalCost();
-   }
-    function updateTotalCost() {
-       let totalCost = cart.reduce((sum, item) => {
-        const numericPrice = parseFloat(item.price.toString().replace(/[^0-9.]/g, ""));
-        return sum + (isNaN(numericPrice) ? 0 : numericPrice);
-       }, 0);
-    totalCostElement.textContent = `Total: ₹${totalCost.toFixed(2)}`;
-     }
+        function renderCart() {
+            cartContainer.innerHTML = cart.map((item, index) => 
+                `<div class="cart-item">
+                    <p>${item.name} - ₹${item.price}</p>
+                    <img src="${item.image}" width="50"> 
+                    <button class="remove-btn" data-main="${index}">Remove</button>
+                </div>`
+            ).join("");
+            updateTotalCost();
+        }
+
+        function updateTotalCost() {
+            let totalCost = cart.reduce((sum, item) => {
+                const numericPrice = parseFloat(item.price.toString().replace(/[^0-9.]/g, ""));
+                return sum + (isNaN(numericPrice) ? 0 : numericPrice);
+            }, 0);
+            totalCostElement.textContent = `Total: ₹${totalCost.toFixed(2)}`;
+        }
+
         document.getElementById("add-to-cart").addEventListener("click", function () {
             if (name && price && image) {
                 cart.push({ name, price, image });
@@ -236,24 +227,66 @@
             }
         });
 
-        // Initial render
         renderCart();
-    });
-            document.getElementById("confirm-button").addEventListener("click", function () {
-                const clientDetails = {
-                    clientName: document.getElementById("name").value,
-                    clientGender:document.getElementById("gender").value,
-                    clientEmail: document.getElementById("email").value,
-                    clientAddress: document.getElementById("address").value,
-                    clientContact: document.getElementById("contact").value,
-                    paymentMethod: document.getElementById("payment-method").value,
-                    cart: cart
-                };
 
-                localStorage.setItem("orderDetails", JSON.stringify(clientDetails));
-                window.location.href = "confirm.html";
+        document.getElementById("confirm-button").addEventListener("click", function () {
+            const clientName = document.getElementById("name");
+            const clientGender = document.getElementById("gender");
+            const clientEmail = document.getElementById("email");
+            const clientAddress = document.getElementById("address");
+            const clientContact = document.getElementById("contact");
+            const paymentMethod = document.getElementById("payment-method");
+
+            [clientName, clientEmail, clientAddress, clientContact].forEach(input => {
+                input.style.border = "1px solid #ccc";
             });
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const phoneRegex = /^\d{10}$/;
+
+            if (cart.length === 0) {
+                alert("Your cart is empty! Please add at least one item before confirming.");
+                return;
+            }
+
+            let valid = true;
+
+            if (!clientName.value.trim()) {
+                clientName.style.border = "2px solid red";
+                valid = false;
+            }
+            if (!clientEmail.value.trim() || !emailRegex.test(clientEmail.value.trim())) {
+                clientEmail.style.border = "2px solid red";
+                valid = false;
+            }
+            if (!clientAddress.value.trim()) {
+                clientAddress.style.border = "2px solid red";
+                valid = false;
+            }
+            if (!clientContact.value.trim() || !phoneRegex.test(clientContact.value.trim())) {
+                clientContact.style.border = "2px solid red";
+                valid = false;
+            }
+
+            if (!valid) {
+                alert("Please fill in all required fields with valid information.");
+                return;
+            }
+
+            const clientDetails = {
+                clientName: clientName.value.trim(),
+                clientGender: clientGender.value,
+                clientEmail: clientEmail.value.trim(),
+                clientAddress: clientAddress.value.trim(),
+                clientContact: clientContact.value.trim(),
+                paymentMethod: paymentMethod.value,
+                cart: cart
+            };
+
+            localStorage.setItem("orderDetails", JSON.stringify(clientDetails));
+            window.location.href = "confirm.html";
         });
+    });
     </script>
 </body>
 </html>
