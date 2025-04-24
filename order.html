@@ -180,71 +180,64 @@
         <button id="confirm-button">Confirm Order</button>
     </div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const name = localStorage.getItem("teaName");
-            const image = localStorage.getItem("teaImage");
-            const price = localStorage.getItem("teaPrice");
-            const selectedItemImage = document.getElementById("selected-item-image");
-            const selectedItemName = document.getElementById("selected-item-name");
-            const selectedItemPrice = document.getElementById("selected-item-price");
-            const totalCostElement = document.getElementById("total-cost");
+   <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const name = localStorage.getItem("teaName");
+        const image = localStorage.getItem("teaImage");
+        const price = localStorage.getItem("teaPrice");
+        const selectedItemImage = document.getElementById("selected-item-image");
+        const selectedItemName = document.getElementById("selected-item-name");
+        const selectedItemPrice = document.getElementById("selected-item-price");
+        const totalCostElement = document.getElementById("total-cost");
 
-            if (name && image && price) {
-                selectedItemName.textContent = name;
-                selectedItemPrice.textContent = `Price: ${price}`;
-                selectedItemImage.src = image;
-                selectedItemImage.alt = name;
-            } else {
-                document.getElementById("order-container").innerHTML = "<p>No item selected.</p>";
+        if (name && image && price) {
+            selectedItemName.textContent = name;
+            selectedItemPrice.textContent = `Price: ₹${price}`;
+            selectedItemImage.src = image;
+            selectedItemImage.alt = name;
+        } else {
+            document.getElementById("order-container").innerHTML = "<p>No item selected.</p>";
+        }
+
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const cartContainer = document.getElementById("cart-items");
+
+        function renderCart() {
+            cartContainer.innerHTML = cart.map((item, index) => 
+                `<div class="cart-item">
+                    <p>${item.name} - ₹${item.price}</p>
+                    <img src="${item.image}" width="50"> 
+                    <button class="remove-btn" data-main="${index}">Remove</button>
+                </div>`
+            ).join("");
+            updateTotalCost();
+        }
+
+        function updateTotalCost() {
+            let totalCost = cart.reduce((sum, item) => sum + parseFloat(item.price.replace(/[^0-9.]/g, "")), 0);
+            totalCostElement.textContent = `Total: ₹${totalCost.toFixed(2)}`;
+        }
+
+        document.getElementById("add-to-cart").addEventListener("click", function () {
+            if (name && price && image) {
+                cart.push({ name, price, image });
+                localStorage.setItem("cart", JSON.stringify(cart));
+                renderCart();
             }
+        });
 
-            let cart = JSON.parse(localStorage.getItem("cart")) || [];
-            const cartContainer = document.getElementById("cart-items");
-
-            function renderCart() {
-                 cartContainer.innerHTML = cart.map((item, main) => 
-                    `<div class="cart-item">
-                       <p>${item.name} - ₹${item.price}</p>
-                       <img src="${item.image}" width="50"> 
-                       <button class="remove-btn" data-main="${main}">Remove</button>
-                    </div>`
-                ).join("");
-                updateTotalCost();
-       }
-            function updateTotalCost() {
-                let totalCost = cart.reduce((sum, item) => sum + parseFloat(item.price.replace(/[^0-9.]/g, "")), 0);
-                function renderCart() {
-    cartContainer.innerHTML = cart.map((item, main) => 
-        `<div class="cart-item">
-            <p>${item.name} - ${item.price}</p>
-            <img src="${item.image}" width="50"> 
-            <button class="remove-btn" data-main="${main}">Remove</button>
-        </div>`
-    ).join("");
-    updateTotalCost();
-}
+        cartContainer.addEventListener("click", function (event) {
+            if (event.target.classList.contains("remove-btn")) {
+                const main = event.target.dataset.main;
+                cart.splice(main, 1);
+                localStorage.setItem("cart", JSON.stringify(cart));
+                renderCart();
             }
+        });
 
-            document.getElementById("add-to-cart").addEventListener("click", function () {
-                if (name && price && image) {
-                    cart.push({ name, price, image });
-                    localStorage.setItem("cart", JSON.stringify(cart));
-                    renderCart();
-                }
-            });
-
-            cartContainer.addEventListener("click", function (event) {
-                if (event.target.classList.contains("remove-btn")) {
-                    const main = event.target.dataset.main;
-                    cart.splice(main, 1);
-                    localStorage.setItem("cart", JSON.stringify(cart));
-                    renderCart();
-                }
-            });
-
-            renderCart();
-
+        // Initial render
+        renderCart();
+    });
             document.getElementById("confirm-button").addEventListener("click", function () {
                 const clientDetails = {
                     clientName: document.getElementById("name").value,
