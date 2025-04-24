@@ -145,7 +145,7 @@
         <div class="cart-container">
             <h3>Your Cart</h3>
             <div id="cart-items"></div>
-            <p id="total-cost">Total Cost: $0.00</p>
+            <p id="total-cost">Total Cost: ₹0.00</p>
         </div>
 
         <div class="client-form">
@@ -205,7 +205,7 @@
             function renderCart() {
                  cartContainer.innerHTML = cart.map((item, main) => 
                     `<div class="cart-item">
-                       <p>${item.name} - ${item.price}</p>
+                       <p>${item.name} - ₹${item.price}</p>
                        <img src="${item.image}" width="50"> 
                        <button class="remove-btn" data-main="${main}">Remove</button>
                     </div>`
